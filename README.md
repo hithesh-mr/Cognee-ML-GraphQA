@@ -20,14 +20,19 @@ The project follows a simple client-server architecture:
 
 Here is a simple diagram illustrating how the components interact:
 
-```
-[User] <--> [Browser: index.html, scripts.js, styles.css]
-   |
-   |-- (1) Asks question --> [FastAPI Server: app.py]
-   |                                  |
-   |                                  |-- (2) Calls cognee.search() --> [Knowledge Graph]
-   |                                  |
-   |-- (4) Receives formatted answer <-|-- (3) Returns results -------- [FastAPI Server: app.py]
+```mermaid
+sequenceDiagram
+    participant User
+    participant Browser
+    participant FastAPI as "FastAPI Server: app.py"
+    participant KG as "Knowledge Graph"
+
+    User->>Browser: Interacts with UI
+    Browser->>FastAPI: (1) Asks question
+    FastAPI->>KG: (2) Calls cognee.search()
+    KG-->>FastAPI: (3) Returns results
+    FastAPI-->>Browser: (4) Returns formatted answer
+    Browser-->>User: Displays answer
 ```
 
 ## Key Technologies & Libraries
