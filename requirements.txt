@@ -1,0 +1,4 @@
+cognee
+fastapi
+uvicorn[standard]
+python-dotenv
